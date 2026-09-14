@@ -23,7 +23,6 @@
 
   <ItemGroup>
     <Folder Include="Components\Pages\DirectionPages\" />
-    <Folder Include="Components\Pages\GroupPages\" />
   </ItemGroup>
 
 </Project>

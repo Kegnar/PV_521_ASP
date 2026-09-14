@@ -12,12 +12,14 @@ namespace Academy.Models
         [Required]
         public string group_name { get; set; }
 
+        
+        public int direction { get; set; }
         [ForeignKey("direction")]
-        public short direction { get; set; }
+        
         public Direction Direction { get; set; }
 
-        public short weekdays { get; set; }
-        public DateOnly start_date { get; set; }
+        public short? weekdays { get; set; }
+        public DateOnly? start_date { get; set; }
 
     }
 }
