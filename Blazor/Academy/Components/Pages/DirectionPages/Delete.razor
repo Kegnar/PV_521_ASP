@@ -1,4 +1,4 @@
-@page "/directions/delete"
+﻿@page "/directions/delete"
 @using Microsoft.EntityFrameworkCore
 @using Academy.Models
 @inject IDbContextFactory<Academy.Data.AcademyContext> DbFactory
@@ -10,7 +10,7 @@
 
 <p>Are you sure you want to delete this?</p>
 <div>
-    <h2>directions</h2>
+    <h2>Direction</h2>
     <hr />
     @if (direction is null)
     {
@@ -41,7 +41,7 @@
 
         if (direction is null)
         {
-            NavigationManager.NotFound();
+            NavigationManager.NavigateTo("notfound");
         }
     }
 

@@ -3,14 +3,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Academy.Models
 {
-    public class Direction
-    {
-        [Key]
-        [Column(TypeName = "SMALLINT")]
-        public int direction_id { get; set; }
+	public class Direction
+	{
+		[Key]
+		public int direction_id { get; set; }
 
-        [Required]
-        public string direction_name { get; set; }
-        
-    }
+		[Required]
+		[StringLength(50, MinimumLength = 2)]
+		public string direction_name { get; set; }
+	}
 }

@@ -1,4 +1,4 @@
-@page "/directions/edit"
+﻿@page "/directions/edit"
 @using Microsoft.EntityFrameworkCore
 @using Academy.Models
 @inject IDbContextFactory<Academy.Data.AcademyContext> DbFactory
@@ -8,7 +8,7 @@
 
 <h1>Edit</h1>
 
-<h2>directions</h2>
+<h2>Direction</h2>
 <hr />
 @if (Direction is null)
 {
@@ -21,7 +21,7 @@ else
             <EditForm method="post" Model="Direction" OnValidSubmit="UpdateDirection" FormName="edit" Enhance>
                 <DataAnnotationsValidator />
                 <ValidationSummary role="alert"/>
-                <input type="hidden" name="directions.direction_id" value="@Direction.direction_id" />
+                <input type="hidden" name="Direction.direction_id" value="@Direction.direction_id" />
                 <div class="mb-3">
                 <span class="text-danger">*</span>
                     <label for="direction_name" class="form-label">direction_name:</label>
@@ -52,7 +52,7 @@ else
 
         if (Direction is null)
         {
-            NavigationManager.NotFound();
+            NavigationManager.NavigateTo("notfound");
         }
     }
 
@@ -71,7 +71,7 @@ else
         {
             if (!DirectionExists(Direction!.direction_id))
             {
-                NavigationManager.NotFound();
+                NavigationManager.NavigateTo("notfound");
             }
             else
             {

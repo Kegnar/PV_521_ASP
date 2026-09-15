@@ -25,4 +25,12 @@
     <Folder Include="Components\Pages\DirectionPages\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Components\Pages\GroupPages\Create.razor" />
+    <_ContentIncludedByDefault Remove="Components\Pages\GroupPages\Delete.razor" />
+    <_ContentIncludedByDefault Remove="Components\Pages\GroupPages\Details.razor" />
+    <_ContentIncludedByDefault Remove="Components\Pages\GroupPages\Edit.razor" />
+    <_ContentIncludedByDefault Remove="Components\Pages\GroupPages\Index.razor" />
+  </ItemGroup>
+
 </Project>

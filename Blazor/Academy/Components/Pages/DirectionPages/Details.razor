@@ -1,4 +1,4 @@
-@page "/directions/details"
+﻿@page "/directions/details"
 @using Microsoft.EntityFrameworkCore
 @using Academy.Models
 @inject IDbContextFactory<Academy.Data.AcademyContext> DbFactory
@@ -9,7 +9,7 @@
 <h1>Details</h1>
 
 <div>
-    <h2>directions</h2>
+    <h2>Direction</h2>
     <hr />
     @if (direction is null)
     {
@@ -40,7 +40,7 @@
 
         if (direction is null)
         {
-            NavigationManager.NotFound();
+            NavigationManager.NavigateTo("notfound");
         }
     }
 }
