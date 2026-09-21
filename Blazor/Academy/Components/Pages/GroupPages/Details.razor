@@ -45,11 +45,11 @@
     {
         using var context = DbFactory.CreateDbContext();
         group = await context
-            .Groups
-            .Include(g => g.Direction)
-            .FirstOrDefaultAsync(m => m.group_id == group_id);
+						.groups
+						.Include(g => g.Direction)
+						.FirstOrDefaultAsync(m => m.group_id == group_id);
 
-        // group = await context.Groups.FirstOrDefaultAsync(m => m.group_id == group_id);
+        // group = await context.groups.FirstOrDefaultAsync(m => m.group_id == group_id);
 
         if (group is null)
         {

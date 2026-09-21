@@ -30,7 +30,7 @@
 					<option disabled selected> --- Выберите направлении обучения --- </option>
 					@using (Academy.Data.AcademyContext context = DbFactory.CreateDbContext())
 					{
-						@foreach (Direction d in context.Directions)
+						@foreach (Direction d in context.directions)
 						{
 							<option value="@d.direction_id">@d.direction_name</option>
 						}
@@ -71,7 +71,7 @@
     private async Task AddGroup()
     {
         using var context = DbFactory.CreateDbContext();
-        context.Groups.Add(Group);
+        context.groups.Add(Group);
         await context.SaveChangesAsync();
         NavigationManager.NavigateTo("/groups");
     }
