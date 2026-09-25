@@ -9,6 +9,7 @@ namespace Academy.Data
 {
     public class AcademyContext : DbContext
     {
+        public DbSet<Academy.Models.Teacher> teachers { get; set; } = default!;
         public AcademyContext (DbContextOptions<AcademyContext> options)
             : base(options)
         {
