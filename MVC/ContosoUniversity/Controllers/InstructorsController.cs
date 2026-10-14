@@ -63,6 +63,7 @@ namespace ContosoUniversity.Controllers
             }
 
             var instructor = await _context.Instructors
+				.Include(i => i.OfficeAssignment)
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (instructor == null)
             {
@@ -102,7 +103,12 @@ namespace ContosoUniversity.Controllers
                 return NotFound();
             }
 
-            var instructor = await _context.Instructors.FindAsync(id);
+            var instructor = await _context
+									.Instructors
+									.Include(i => i.OfficeAssignment)
+									.AsNoTracking()
+									.FirstOrDefaultAsync(i => i.ID == id);
+
             if (instructor == null)
             {
                 return NotFound();
@@ -122,7 +128,11 @@ namespace ContosoUniversity.Controllers
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+			instructor = await _context.Instructors
+										.Include(i => i.OfficeAssignment)
+										.FirstOrDefaultAsync (i => i.ID == id);
+
+			/*if (ModelState.IsValid)
             {
                 try
                 {
@@ -141,7 +151,31 @@ namespace ContosoUniversity.Controllers
                     }
                 }
                 return RedirectToAction(nameof(Index));
-            }
+            }*/
+
+			Task<bool> ok = TryUpdateModelAsync<Instructor>
+			(
+				instructor,
+				"",
+				i => i.FirstName, i => i.LastName, i => i.HireDate, i => i.OfficeAssignment
+			);
+
+			if (ok.IsCompleted)
+			{
+				if(String.IsNullOrWhiteSpace(instructor.OfficeAssignment?.Location))
+					instructor.OfficeAssignment = null;
+
+				try
+				{
+					await _context.SaveChangesAsync();
+				}
+				catch (DbUpdateException ex)
+				{
+					ModelState.AddModelError("", "Невозможно обновить данные");
+					return View(instructor);
+				}
+			}
+            return Redirect($"/instructors/Details/{instructor.ID}");
             return View(instructor);
         }
 
